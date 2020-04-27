@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { userService } from '../../Services/user.service';
+import { history } from '../../Routing/history';
 // import { connect } from 'react-redux';
 
 // import { userActions } from '../_actions';
@@ -46,9 +47,9 @@ class Register extends React.Component {
                 .then(
                     user => { 
                         console.log("Success");
-                        return <Redirect to='/Login' />
+                        // return <Redirect to='/Login' />
                         // dispatch(success());
-                        // history.push('/login');
+                        history.push('/login');
                         // dispatch(alertActions.success('Registration successful'));
                     },
                     error => {
