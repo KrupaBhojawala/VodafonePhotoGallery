@@ -6,9 +6,9 @@ var busLog=require('../public/javascripts/BL.js');
 
 
 routing.post('/employee/verify',function(request,response,next){
-    var empId=request.body.empId;
+    var staffId=request.body.staffId;
     var password=request.body.password;
-    return busLog.loginUser(empId,password)
+    return busLog.loginUser(staffId,password)
             .then(function(data){
                 response.json(data);
             }).catch(function (error){
@@ -26,10 +26,10 @@ routing.post('/employee/verify',function(request,response,next){
 
 routing.post('/signup',function(req,res,next){
     var credentials={
-        "fname":req.body.firstname,
-        "lname":req.body.lastname,
-        "uname":req.body.username,
-        "pass":req.body.password
+        // "fname":req.body.firstname,
+        // "lname":req.body.lastname,
+        "staffId":req.body.staffId,
+        "password":req.body.password
     }
     return busLog.signupUser(credentials)
             .then(function(item){

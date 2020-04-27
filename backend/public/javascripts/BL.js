@@ -6,7 +6,11 @@ var busLog = {};
 busLog.loginUser = function (empId,password) {
     return dal.userLogin(empId,password)
         .then(function (response) {
-            return response;
+            console.log(response[0].staffId);
+            user ={
+                "staffId" : response[0].staffId
+            }
+            return user;
         })
 }
 

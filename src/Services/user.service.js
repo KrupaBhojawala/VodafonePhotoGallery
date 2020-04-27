@@ -24,10 +24,13 @@ function login(staffId, password) {
     return fetch(backendurl+`employee/verify`, requestOptions)
         .then(handleResponse)
         .then(user => {
+            // console.log("User Services");
+            // console.log(user)
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-
-            return user;
+            if(!user.status){
+                localStorage.setItem('user', JSON.stringify(user));
+                return user;
+            }
         });
 }
 

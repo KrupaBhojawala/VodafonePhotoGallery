@@ -11,13 +11,13 @@ bookDAL.userLogin = function (empId,password) {
             .then(function (client){
                 var collection = client.collection("book_users");
 
-                return collection.find({"empId":empId,"password":password}).toArray()
+                return collection.find({"staffId":empId,"password":password}).toArray()
                         .then(function(response){
                             if(response.length==1){
                                 client.close();
                                 console.log("correct credentials")
-                                console.log(response)
-                                return "Login Successful";
+                                // console.log(response)
+                                return response;
                             }
                             else {
                                 var err= new Error();
