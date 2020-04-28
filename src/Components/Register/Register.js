@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { userService } from '../../Services/user.service';
 import { history } from '../../Routing/history';
+import { userService } from '../Services/user.service'
 // import { connect } from 'react-redux';
 
 // import { userActions } from '../_actions';
@@ -41,8 +41,7 @@ class Register extends React.Component {
         const { user } = this.state;
         if (user.staffId && user.password && user.confirmPassword) {
             if(user.confirmPassword === user.password){
-                console.log(user.staffId + user.password + user.confirmPassword)
-                
+                // console.log(user.staffId + user.password + user.confirmPassword)
                 userService.register(user)
                 .then(
                     user => { 

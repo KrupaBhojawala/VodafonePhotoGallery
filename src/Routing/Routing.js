@@ -23,7 +23,7 @@ export default class Routing extends React.Component {
             </li>
             <li><Link to="/Album">Albums</Link></li>
             <li><Link to="/Photos">Photos</Link></li>
-            <li><Link to="/Login"> Logout </Link> </li>
+            <li style={{float:"right"}} ><Link to="/Login"> Logout </Link> </li>
           </ul>
     
         <Switch>

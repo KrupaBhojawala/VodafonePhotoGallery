@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { userService } from '../../Services/user.service';
+import { userService } from '../Services/user.service';
 import { history } from '../../Routing/history';
 // import { connect } from 'react-redux';
 
@@ -34,7 +34,7 @@ class LoginPage extends React.Component {
         this.setState({ submitted: true });
         const { staffId, password } = this.state;
         if (staffId && password) {
-            console.log(staffId + password)
+            // console.log(staffId + password)
             userService.login(staffId,password)
             .then(
                 user => { 
