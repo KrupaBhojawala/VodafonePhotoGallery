@@ -44,12 +44,23 @@ class Register extends React.Component {
                 // console.log(user.staffId + user.password + user.confirmPassword)
                 userService.register(user)
                 .then(
-                    user => { 
-                        console.log("Success");
-                        // return <Redirect to='/Login' />
-                        // dispatch(success());
-                        history.push('/login');
-                        // dispatch(alertActions.success('Registration successful'));
+                    user => {
+                        if(!user){
+                            this.setState({ 
+                                user: {
+                                    staffId: '',
+                                    password: '',
+                                    confirmPassword: ''
+                                },
+                                submitted: false
+                            });
+                        }else{
+                            console.log("Success");
+                            // return <Redirect to='/Login' />
+                            // dispatch(success());
+                            history.push('/login');
+                            // dispatch(alertActions.success('Registration successful'));
+                        }
                     },
                     error => {
                         console.log(error)

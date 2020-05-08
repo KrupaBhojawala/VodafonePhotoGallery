@@ -1,26 +1,59 @@
 var dal = require('./DAL');
+var User = require('./User');
 var busLog = {};
 
 
 
-busLog.loginUser = function (empId,password) {
-    return dal.userLogin(empId,password)
-        .then(function (response) {
-            console.log(response[0].staffId);
+busLog.loginUser = function (staffId,password) {
+
+    var result = User.userLogin(staffId,password).promise()
+    return result.then(data=>{
+        if(data.Item){
+            console.log(data.Item.staffId)
             user ={
-                "staffId" : response[0].staffId
+                "staffId" : data.Item.staffId
             }
-            return user;
-        })
+            return user
+        }
+        else{
+            var err= new Error();
+            err.status=404;
+            err.message="Login failed!"
+            throw err
+        }
+    })
+
+    // return dal.userLogin(staffId,password)
+    //     .then(function (response) {
+    //         console.log(response[0].staffId);
+    //         user ={
+    //             "staffId" : response[0].staffId
+    //         }
+    //         return user;
+    //     })
 }
 
 
 
 busLog.signupUser = function (credentials) {
-    return dal.signupUser(credentials)
-        .then(function (item) {
-            return item;
-        })
+    var res =User.signupUser(credentials)
+    return res.then(data => {
+        console.log("IN BL",data);
+        if(data == false){
+            return data;
+        }
+        else{
+            return data.promise().then(data=>{
+                console.log(data)
+                return data
+            })
+        }
+    })
+
+    // return dal.signupUser(credentials)
+        // .then(function (item) {
+        //     return item;
+        // })
 }
 
 busLog.getBooks = function(type){
